@@ -46,9 +46,8 @@ result8 = [1, 1]
 
 # Test 9: Proving that if there's 3 walkings but the walking number 2 has
 # speed less than necessary, then only 2 walking will be computed
-data9 = [[0,0],[20,42],[40,84],[60,127],[80,0],[100,0],[120,0],[140,0]
+data9 = [[0,0],[20,42],[40,84],[60,127],[80,0],[100,0],[120,0],[140,0],
          [160,40],[180,79],[200,115],[220,0],[240,0],[260,0],[280,45],
          [300,73],[320,122]]
-result9 = [2, 2] 
-data10 = []
+result9 = [2, 2]
 

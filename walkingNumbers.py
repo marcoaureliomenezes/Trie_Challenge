@@ -21,6 +21,4 @@ def validatedWalking(data) :
                                         walkingQuantity += 1
                                         walkingTime += 1
                                         stack = []
-                                        print(walkingQuantity)
-                                        
         return [walkingQuantity, walkingTime]
