@@ -52,7 +52,7 @@ class StepCounter:
 	def validatedWalking(self, data, stepGoal=120, timeGoal=1):
 		stack = []; trainStack = []; walkingQuantity = 0; walkingTime = 0
 		for it in data:
-    			instant = it[0]
+			instant = it[0]
 			trainStack.append(it[1])
 			stepNumber = self._stepCounter(trainStack)
 			stack.append([instant + (60 * timeGoal), stepNumber])

@@ -1,8 +1,8 @@
-import dataTest1 as dt1
 
-from StepCounterClass import StepCounter
+from src.StepCounterClass import StepCounter
+import data.dataTest1 as dt1
 
-stepCounter = StepCounter('data.csv')
+stepCounter = StepCounter("data/data.csv")
 
 stepCounter.test1(dt1.vet1, dt1.result1)
 stepCounter.test1(dt1.vet2, dt1.result2)
