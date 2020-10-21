@@ -4,17 +4,17 @@ result1 = 10
 
 # Test 2: When there's a reset
 vet2 = [0, 0, 1, 2, 0, 0, 1, 2]
-result2 = 2 + 2
+result2 = 4
 
 # Test 3: When there are two resets. The seconds reset is identified
 # by the number of step on the previous instant measured is greater than
 # the actual number of steps
 vet3 = [5, 0, 1, 3, 5, 4]
-result3 = 5 + 5 + 4
+result3 = 14
 
 # Test 4: 
 vet4 = [1, 2, 0, 0, 1, 0, 1, 2]
-result4 = 2 + 1 + 2
+result4 = 5
 
 # Problem of reset on stepCounter device side
 # If in a vector of steps we analyze a sequential pair (v1, v2) 
