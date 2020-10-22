@@ -1,4 +1,4 @@
-from src.StepCounterClass import StepCounter
+from src.StepCounter import StepCounter
 
 def test(testNumber, csvUrl, idealValue):
     stepCounter = StepCounter(csvUrl)
