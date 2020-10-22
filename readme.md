@@ -1,31 +1,34 @@
 # Trie Challenge
 
 #    Project structure
-#       Data folder: Contains the CSV file and datasets for the assignment 1
-#       (dataTest1.py) and 2 (dataTest2.py).
+#       Data folder: Contains data.csv and folders data1 and data2,
+#       data.csv: contains data.csv (file sent by Trie company)
+#       data1 folder: contains csv files to test the first assignment
+#       data2 folder: contains csv files to test the second assignment
 
 #       src folder: Contains StepCounterClass and TimeStampsHandler
 
-#       Contains the file with the class StepCounter, where
-#       all methods about the step counter are implemented.
+#           StepCounter class contains the methods to calculate total of
+#           steps of a CSV file (assigment 1) and to compute total of walking
+#           and time spent walking from a CSV file and load these values inside
+#           private attributes of the class.
 
-#       test1.py file: file that imports dataTest1 dataset and
-#       StepCounter class and executes tests of stepCounter method.
-#       StepCounter method is used to compute the absolute number of
-#       steps even whether resets are made.
+#           TimeStampsHandler class contains static methods to handle with data
+#           and the timestamps format received from CSV files. The main purpose
+#           for this class is convert timestamps with format 
+#           2020-03-01 22:44:00.047143516 to a float number that represents the
+#           same timesstamps in seconds
 
-#       test2.py: file that imports dataTest2 dataset and
-#       StepCounter class and executes tests of validatedWalking method.
-#       validatedWalking method is used to compute the number of
-#       walkings made and time spent with these walkings. 
+#       testCSV1.py: Where is written a method to test the first assignment.
+#       One object from StepCounter class is instantiated with the csv file
+#       for test being passed as parameter, the result of StepCounterCSV is
+#       compared with a ideal result.
 
-#       testCSV1.py: file that imports data.csv dataset and
-#       StepCounter class and executes stepCounter method on it to
-#       find the absolute number of steps in data.csv.
+#       testCSV2.py: Where is written a method to test the second assignment.
+#       One object from StepCounter class is instantiated with the csv file
+#       for test being passed as parameter, the result of ComputeWalkingCSV is
+#       compared with a ideal result.
 
-#       testCSV2.py: file that imports data.csv dataset and
-#       StepCounter class and executes stepCounter method on it to
-#       find the absolute number of steps in data.csv.
 
 #       There's a interesting problem with the way we receive data that
 #       can generate data inconsistency.
