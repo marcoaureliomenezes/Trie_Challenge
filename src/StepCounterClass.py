@@ -64,23 +64,24 @@ class StepCounter:
 		# Running through this dict, if the actual instant greater than
 		#  
 
-	def computeWalking(self, stepGoal=120, timeGoal=1):
+	def computeWalkingCSV(self, stepGoal=120, timeGoal=1):
 		monitoredDataList = []; stepNumberList = [];
 		walkingQuantity = 0; walkingTime = 0
 		for index, row in self._file.iterrows():
-			instant = row[0]
-			stepNumberList.append(row[1])
-			stepNumber = self.stepCounter(stepNumberList)
-			monitoredDataList.append([instant + (60 * timeGoal), stepNumber])
-			for monitoredData in monitoredDataList:
-				if instant >= monitoredData[0]:
-					if (int(stepNumber) - monitoredData[1]) >= stepGoal :
-						walkingQuantity += 1
-						walkingTime += 1
-						monitoredDataList = []
-						break
-		print(walkingQuantity, walkingTime)
-		return [walkingQuantity, walkingTime]
+			print(row[0])
+		# 	instant = row[0]
+		# 	stepNumberList.append(row[1])
+		# 	stepNumber = self.stepCounter(stepNumberList)
+		# 	monitoredDataList.append([instant + (60 * timeGoal), stepNumber])
+		# 	for monitoredData in monitoredDataList:
+		# 		if instant >= monitoredData[0]:
+		# 			if (int(stepNumber) - monitoredData[1]) >= stepGoal :
+		# 				walkingQuantity += 1
+		# 				walkingTime += 1
+		# 				monitoredDataList = []
+		# 				break
+		# print(walkingQuantity, walkingTime)
+		# return [walkingQuantity, walkingTime]
 
 	def validatedWalking1(self, data, stepGoal=120, timeGoal=1):
 		monitoredDataList = []; stepNumberList = [];
