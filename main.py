@@ -1,7 +1,8 @@
 import pandas as pd
-from datetime import datetime
+import numpy as np
 
-df = pd.read_csv('data-test4.csv', sep= ',', parse_dates=['timestamp'])
+
+df = pd.read_csv('data-test2.csv', sep= ',', parse_dates=['timestamp'])
 
 
 
@@ -13,9 +14,9 @@ df["reset_step_accumulator"] = df["reset event"].cumsum()
 df["absolute_steps"] = df["reset_step_accumulator"] + df["count"]
 
 
-print("Passos para anular o valor do reset e encontrar o numero de passos absolutos")
-print(df.loc[:,['count', 'delta count', 'reset event', 'reset_step_accumulator',
-'absolute_steps']])
+# print("Passos para anular o valor do reset e encontrar o numero de passos absolutos")
+# print(df.loc[:,['count', 'delta count', 'reset event', 'reset_step_accumulator',
+# 'absolute_steps']])
 
 total_steps = df["absolute_steps"].max()
 total_steps2 = df["absolute_steps"].loc[df["absolute_steps"].size - 1]
@@ -30,8 +31,18 @@ print("Total de passos com método 2", total_steps2)
 df["timeSeconds"] = (df["timestamp"] - df["timestamp"].loc[0]).dt.total_seconds()
 df["velocity"] = df["absolute_steps"].diff() / (df["timeSeconds"].diff())
 
-df["wished_value"] = df["timeSeconds"].apply(lambda x: x - 600 if x - 600 > 0 else 0)
+def nearestValue(value):
+    absolute_value = np.abs(df["timeSeconds"] - value)
+    smallest_difference_index = absolute_value.argmin()
+    closest_element = df["timeSeconds"][smallest_difference_index]
+    return closest_element
+
+df["timeBefore10"] = df["timeSeconds"].apply(lambda x: x - 600 if x > 600 else 0)
+df["wished_value"] = df["timeSeconds"].apply(lambda x: nearestValue(x-600))
 
 
-print(df.loc[:, ["timeSeconds", "absolute_steps", "velocity", "wished_value"]])
+df["wishedSteps"] = df["absolute_steps"]
+
+print(df.loc[:, ["timeSeconds", "timeBefore10", "wished_value", "absolute_steps",
+"wishedSteps"]])
 
