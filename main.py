@@ -13,9 +13,9 @@ df["reset_step_accumulator"] = df["reset event"].cumsum()
 df["absolute_steps"] = df["reset_step_accumulator"] + df["count"]
 
 
-print("Passos para anular o valor do reset e encontrar o numero de passos absolutos")
-print(df.loc[:,['count', 'delta count', 'reset event', 'reset_step_accumulator',
-'absolute_steps']])
+# print("Passos para anular o valor do reset e encontrar o numero de passos absolutos")
+# print(df.loc[:,['count', 'delta count', 'reset event', 'reset_step_accumulator',
+# 'absolute_steps']])
 
 total_steps = df["absolute_steps"].max()
 total_steps2 = df["absolute_steps"].loc[df["absolute_steps"].size - 1]
@@ -32,7 +32,6 @@ df["velocity"] = df["absolute_steps"].diff() / (df["timeSeconds"].diff())
 
 df["wished_value"] = df["timeSeconds"].apply(lambda x: x - 600 if x - 600 > 0 else 0)
 
-df["wished_value2"] = df["absolute_steps"].apply()]
 
 print(df.loc[:, ["timeSeconds", "absolute_steps", "velocity", "wished_value",
 "wished_value2"]])
