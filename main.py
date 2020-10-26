@@ -1,37 +1,39 @@
 import pandas as pd
 from datetime import datetime
 
-data = pd.read_csv('data-test4.csv', sep= ',', parse_dates=['timestamp'])
-
-# This line filters data taking out repeated numbers if the a 2 times
-# consecutives.
-df = data.loc[data["count"].diff(2) != 0]
+df = pd.read_csv('data-test4.csv', sep= ',', parse_dates=['timestamp'])
 
 
-# This block generates the absolute step counter (step number is
-# never reset) through the following steps
-# a column with difference between the element and its previous one.
-# It returns the negative numbers that stores how many steps we had
-# before the reset
-def absoluteSteps():
-    delta_count = df["count"].diff() 
-    reset_event = delta_count.apply(lambda x : x if x < 0 else 0)
-    reset_step_accumulator = reset_event.cumsum() * (-1)
-    absolute_steps = reset_step_accumulator + df["count"]
-    return absolute_steps
 
-def totalSteps():
-    return absoluteSteps().max()
+# ************************** tarefa 1 ****************************************
 
-def timestampToSeconds():
-    timeSeconds = (df["timestamp"] - df["timestamp"].loc[0]).dt.total_seconds()
-    return timeSeconds
-stepNumber = totalSteps()
+df["delta count"] = df["count"].diff() 
+df["reset event"] = df["delta count"].apply(lambda x : -x if x < 0 else 0)
+df["reset_step_accumulator"] = df["reset event"].cumsum()
+df["absolute_steps"] = df["reset_step_accumulator"] + df["count"]
 
-df["timestamp"] = timestampToSeconds()
-df["Absolute steps"] = absoluteSteps()
-df["velocity"] = df["count"].diff() / (df["timestamp"].diff())
 
-# next block
+print("Passos para anular o valor do reset e encontrar o numero de passos absolutos")
+print(df.loc[:,['count', 'delta count', 'reset event', 'reset_step_accumulator',
+'absolute_steps']])
 
-print(df)
+total_steps = df["absolute_steps"].max()
+total_steps2 = df["absolute_steps"].loc[df["absolute_steps"].size - 1]
+
+print("\nTotal de passos com método 1", total_steps)
+print("Total de passos com método 2", total_steps2)
+
+
+# ***************************** Tarefa 2 ***************************************
+
+
+df["timeSeconds"] = (df["timestamp"] - df["timestamp"].loc[0]).dt.total_seconds()
+df["velocity"] = df["absolute_steps"].diff() / (df["timeSeconds"].diff())
+
+df["wished_value"] = df["timeSeconds"].apply(lambda x: x - 600 if x - 600 > 0 else 0)
+
+df["wished_value2"] = df["absolute_steps"].apply()]
+
+print(df.loc[:, ["timeSeconds", "absolute_steps", "velocity", "wished_value",
+"wished_value2"]])
+
