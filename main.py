@@ -13,9 +13,9 @@ df["reset_step_accumulator"] = df["reset event"].cumsum()
 df["absolute_steps"] = df["reset_step_accumulator"] + df["count"]
 
 
-# print("Passos para anular o valor do reset e encontrar o numero de passos absolutos")
-# print(df.loc[:,['count', 'delta count', 'reset event', 'reset_step_accumulator',
-# 'absolute_steps']])
+print("Passos para anular o valor do reset e encontrar o numero de passos absolutos")
+print(df.loc[:,['count', 'delta count', 'reset event', 'reset_step_accumulator',
+'absolute_steps']])
 
 total_steps = df["absolute_steps"].max()
 total_steps2 = df["absolute_steps"].loc[df["absolute_steps"].size - 1]
