@@ -33,6 +33,5 @@ df["velocity"] = df["absolute_steps"].diff() / (df["timeSeconds"].diff())
 df["wished_value"] = df["timeSeconds"].apply(lambda x: x - 600 if x - 600 > 0 else 0)
 
 
-print(df.loc[:, ["timeSeconds", "absolute_steps", "velocity", "wished_value",
-"wished_value2"]])
+print(df.loc[:, ["timeSeconds", "absolute_steps", "velocity", "wished_value"]])
 
